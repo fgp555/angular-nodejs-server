@@ -1,0 +1,23 @@
+<main class="todo-container container">
+  <div>
+    <input [(ngModel)]="newTask" placeholder="Enter new task" value="newTask" />
+    <br />
+    <button (click)="addTask(newTask)">Add</button>
+
+    <ul *ngFor="let todoItem of todoList; let i = index" [ngClass]="{'completed': todoItem.completed}">
+      <li>
+        <input 
+        [(checked)]="todoItem.completed"
+        type="checkbox" (change)="toggleCompleted(i)" />
+        <span> {{ todoItem.task }} </span>
+
+        <button (click)="deleteTask(todoItem.id)">delete</button>
+      </li>
+    </ul>
+    <pre >{{ todoList | json }}</pre>
+    <!-- <pre>{{ formattedTodoList }}</pre> -->
+    <!-- <pre>{{ getFormattedTodoList() }}</pre> -->
+  </div>
+</main>
+
+<router-outlet />
